@@ -1,0 +1,6 @@
+temp/
+OLD/
+
+/vendor/
+
+*.tmp

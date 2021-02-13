@@ -1,0 +1,10 @@
+{
+  "name": "leandrodaher/birdder",
+  "description": "PHP Blog based on Twitter",
+  "autoload": {
+      "psr-4": {
+        "Birdder\\" : "src/"
+      }
+    },
+  "require": {}
+}
