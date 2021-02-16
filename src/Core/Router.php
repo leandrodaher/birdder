@@ -2,11 +2,13 @@
 
 namespace Birdder\Core;
 
+use Exception;
+
 class Router
 {
     private $routes = [];
 
-    private function splitUri($uri)
+    private static function splitUri($uri)
     {
             // $fristChar = substr($uri, 0, 1);
             $endChar = substr($uri, -1);
@@ -14,14 +16,14 @@ class Router
             return ($endChar === '/') ? substr($uri, 1, strlen($uri)-2) : substr($uri, 1);
     }
     
-    public function getMethod()
+    public static function getMethod()
     {
             return isset($_SERVER['REQUEST_METHOD']) ? strtolower($_SERVER['REQUEST_METHOD']) : 'cli';
     }
     
-    public function getUri()
+    public static function getUri()
     {
-        return $this->splitUri($_SERVER['REQUEST_URI']);
+        return Router::splitUri($_SERVER['REQUEST_URI']);
     }
 
     public function on(string $method, string $route, callable $callback)

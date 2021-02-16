@@ -52,29 +52,9 @@ $router
     })
 
     ->on('GET', 'user', function () {
-        try {
-            $db = new PostgreSQLConnection(DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS);
-            $userModel = new Users($db);
-            $userRepository = new UserRepository($userModel);
-            Utils::printUsers($userRepository);
-        } catch (Exception $e) {
-            echo 'Erro! ' . $e->getMessage();
-        }
-    })
-    
-    ->on('GET', 'insert', function () {
-        // try {
-        //     $db = new PostgreSQLConnection(DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS);
-        //     $userModel = new Users($db);
-
-        //     // echo $userModel->insertUser('joao', 'j12', 'João Silva', 'Gosto de viver a vida.');
-        //     $query = $userModel->findAll();
-        //     Utils::printKeyValue($query); // call static method
-
-        // } catch (Exception $e) {
-        //     echo 'Erro! ' . $e->getMessage();
-        // }
+       echo Router::getMethod() . ' | ' . Router::getUri();
     });
 
 
-$router->run($router->getMethod(), $router->getUri());
+echo Router::getMethod() . ' | ' . Router::getUri();
+$router->run(Router::getMethod(), Router::getUri());

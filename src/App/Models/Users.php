@@ -47,4 +47,17 @@ class Users // implements ModelInterface
         return $this->connection->executeQuery("select * from users");
     }
 
+    /*
+    *   Esta query não faz sentido pois retorna muitos dados redundantes
+    *   Talvez seja melhor fazer uma subquery
+    *   Ou fazer duas queries: uma pra usuário e outra para posts relacionados a ele (no model Posts).
+    */
+    public function getUserJoinPosts(int $id)
+    {
+        $sql = "select * from users
+                inner join posts using (userid)
+                    where userid={$id}";
+        return $this->connection->executeQuery($sql);
+    }
+
 }

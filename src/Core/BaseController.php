@@ -11,22 +11,27 @@ use Birdder\Core\Interface\ControllerInterface;
 abstract class BaseController implements ControllerInterface
 {
 
-  function __construct($model)
+  function __construct($model, $view)
   {
         
   }
 
-  function model($model)
+  public function index()
   {
 
   }
 
-  public function view(string $view, $data = [])
+  private function model($model)
   {
 
   }
 
-  public function pageNotFound()
+  private function view(string $view, $data = [])
+  {
+
+  }
+
+  private function pageNotFound()
   {
     //$this->view('erro404');
   }

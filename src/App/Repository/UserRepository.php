@@ -27,6 +27,18 @@ class UserRepository
         }
     }
 
+    public function getUser(int $id): array
+    {
+        try {
+
+            $fetch = $this->usersModel->get($id);
+            return $fetch[0];
+        } catch (Exception $e) {
+            throw $e;
+            return null;
+        }
+    }
+
     public function findAll(): array
     {
         try {
@@ -34,6 +46,24 @@ class UserRepository
             $fetch = $this->usersModel->findAll();
             return UserRepository::arrayKeyValueToUsers($fetch);
             //return $fetch;
+        } catch (Exception $e) {
+            throw $e;
+            return null;
+        }
+    }
+
+    /*
+    *   Esta query não faz sentido pois retorna muitos dados redundantes
+    *   Talvez seja melhor fazer uma subquery
+    *   Ou fazer duas queries: uma pra usuário e outra para posts relacionados a ele (no model Posts).
+    */
+    public function getUserJoinPosts($id): array
+    {
+        try {
+
+            $fetch = $this->usersModel->getUserJoinPosts($id);
+            //return UserRepository::arrayKeyValueToUsers($fetch);
+            return $fetch;
         } catch (Exception $e) {
             throw $e;
             return null;
